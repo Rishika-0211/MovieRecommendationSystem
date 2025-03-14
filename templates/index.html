@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emotion based movie recommendation system</title>
+    <link rel="stylesheet" href="../static/styles.css">
+</head>
+<body>
+    <h1>Emotion based movie recommendation system</h1>
+    <div class="upload-container">
+        <form action="/upload" method="post" enctype="multipart/form-data">
+            <label for="file-upload" class="custom-file-upload">
+                <input type="file" id="file-upload" name="file" accept="image/*" required>
+            </label>
+            <input type="submit" value="Upload">
+        </form>
+    </div>
+
+    {% if emotion %}
+    <h2>Detected Emotion: {{ emotion }}</h2>
+    <h3>Recommended Movies:</h3>
+    <ul>
+        {% for movie in movies %}
+        <li>
+            <img src="{{ movie.poster_url }}" alt="{{ movie.title }}" style="width:100px; height:auto;">
+            <p>{{ movie.title }}</p>
+        </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</body>
+</html>
